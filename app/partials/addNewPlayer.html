@@ -1,0 +1,64 @@
+<form class="form-horizontal" ng-submit="addPlayer()">
+  <div class="form-group">
+    <label for="player-name" class="col-sm-2 control-label">Player Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="player-name" ng-model="name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="age" class="col-sm-2 control-label">Player Age</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="age" ng-model="age">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jersey-number" class="col-sm-2 control-label">Jersey Number</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="jersey-number" ng-model="jerseyNumber">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jersey-number" class="col-sm-2 control-label">Position</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jersey-number" ng-model="position">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="goals" class="col-sm-2 control-label">Number of Goals</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="goals" ng-model="numberOfGoals">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="country" class="col-sm-2 control-label">Country of Origin</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="country" ng-model="country">
+    </div>
+  </div>        
+  <div class="form-group">
+    <label for="rating" class="col-sm-2 control-label">Rating</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="rating" ng-model="rating">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="thumbnail" class="col-sm-2 control-label">Player Picture</label>
+    <div class="col-sm-10">
+      <input type="file" id="thumbnail"class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</form>   
+
+<form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/api/photo"
+     method    =  "post"
+>
+<input type="file" name="userPhoto" />
+<input type="submit" value="Upload Image" name="submit">
+</form>
