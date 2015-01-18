@@ -1,8 +1,8 @@
 <ul class="list-group" ng-repeat="player in players">
   <li class="list-group-item">
     {{player.name}}
-    <button ng-click="viewPlayerInfo(player.name)">View {{player.name}}'s Info</button>
-    <button ng-click="edit(player.name, player.name, player.age, player.jerseyNumber, player.position, player.numberOfGoals, player.country, player.rating)">Edit Info</button>
+    <button class="btn btn-default" ng-click="viewPlayerInfo(player.name)">View {{player.name}}'s Info</button>
+    <button class="btn btn-default" ng-click="edit(player.name, player.name, player.age, player.jerseyNumber, player.position, player.numberOfGoals, player.country, player.rating, player.imageURL)">Edit Info</button>
   </li>
   
 
@@ -13,19 +13,22 @@
     <div class="player-info">  
       <div class="row">
         <div class="col-md-8">
-          <div>
-            <p>NAME: {{player[0].name}}</p>
-            <p>AGE: {{player[0].age}}</p>
-            <p>POSITION: {{player[0].position}}</p>
-            <p>GOALS SCORED THIS SEASON: {{player[0].numberOfGoals}}</p>
-            <p>PLAYER RATING: {{player[0].rating}}</p>
-            <p>COUNTRY OF ORIGIN: {{player[0].country}}</p>
-            <p>JERSEY NUMBER: {{player[0].jerseyNumber}}</p>
-            <button ng-click="close()">Close</button>
+          <div id="player-details">
+            <p>Name: {{player[0].name}}</p>
+            <p>Age: {{player[0].age}}</p>
+            <p>Position: {{player[0].position}}</p>
+            <p>Goals scored this season: {{player[0].numberOfGoals}}</p>
+            <p>Player rating: {{player[0].rating}}</p>
+            <p>Country of origin: {{player[0].country}}</p>
+            <p>Jersey number: {{player[0].jerseyNumber}}</p>
+            <button class="btn btn-default" ng-click="close()">Close</button>
           </div>
         </div>
+        <!-- div class="col-md-4">          
+          <img id='player-image' ng-src="{{player[0].imageURL}}"/>           
+        </div> -->
         <div class="col-md-4">          
-          <img ng-src="https://arsenalfcapi.herokuapp.com/{{player[0].link}}"/>           
+          <img id='player-image' ng-src="https://arsenalfcapi.herokuapp.com/{{player[0].fileLink}}"/>           
         </div>
       </div>
     </div>
@@ -34,7 +37,7 @@
 
 <div class="overlay" ng-hide="editOverlay">
   
-    <div class="player-info"> 
+    <div class="edit-player-info"> 
 
       <form class="form-horizontal" ng-submit="editPlayerInfo()">
         <div class="form-group">
@@ -80,12 +83,18 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Edit {{newName}}</button>
+          <label for="imageURL" class="col-sm-2 control-label">Image URL</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="imageURL" ng-model="newImageURL">
           </div>
         </div>
-      </form>   
-
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Edit {{newName}}</button>            
+          </div>
+        </div>
+      </form>
+      
     </div>
     
 </div> 

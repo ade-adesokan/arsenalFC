@@ -1,8 +1,12 @@
-var arsenalApp = angular.module('arsenalApp', ['clubControllers', 'ngRoute']);
+var arsenalApp = angular.module('arsenalApp', ['clubControllers', 'ngRoute', 'arsenalAppServices']);
 
 arsenalApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
-  when('/', {
+  when('/home', {
+    templateUrl: 'partials/homepage.html',
+    controller: 'HomepageController'
+  }).
+  when('/players', {
     templateUrl: 'partials/playerList.html',
     controller: 'PlayerListController'
   }).
@@ -11,7 +15,7 @@ arsenalApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'NewPlayerController'
   }).
   otherwise({
-    redirectTo: '/'
+    redirectTo: '/home'
   });
 
 }]);
