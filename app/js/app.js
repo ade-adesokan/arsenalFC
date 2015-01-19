@@ -1,6 +1,10 @@
 var arsenalApp = angular.module('arsenalApp', ['clubControllers', 'ngRoute', 'arsenalAppServices']);
 
-arsenalApp.config(['$routeProvider', function ($routeProvider) {
+
+arsenalApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
+  $locationProvider.html5Mode(true);
+
   $routeProvider.
   when('/arsenalFC/app/#/', {
     templateUrl: 'partials/homepage.html',
