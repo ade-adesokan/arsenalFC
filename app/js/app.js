@@ -1,21 +1,23 @@
 var arsenalApp = angular.module('arsenalApp', ['clubControllers', 'ngRoute', 'arsenalAppServices']);
 
-arsenalApp.config(['$routeProvider', function ($routeProvider) {
+arsenalApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
+
   $routeProvider.
-  when('/arsenalFC/app/#/home', {
+  when('/home', {
     templateUrl: 'partials/homepage.html',
     controller: 'HomepageController'
   }).
-  when('/arsenalFC/app/#/players', {
+  when('/players', {
     templateUrl: 'partials/playerList.html',
     controller: 'PlayerListController'
   }).
-  when('/arsenalFC/app/#/newPlayer', {
+  when('/newPlayer', {
     templateUrl: 'partials/addNewPlayer.html',
     controller: 'NewPlayerController'
   }).
   otherwise({
-    redirectTo: '/arsenalFC/app/#/home'
+    redirectTo: '/home'
   });
 
 }]);
