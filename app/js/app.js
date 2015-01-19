@@ -6,20 +6,20 @@ arsenalApp.config(['$routeProvider', '$locationProvider', function ($routeProvid
   $locationProvider.html5Mode(true);
 
   $routeProvider.
-  when('/arsenalFC/app/#/', {
+  when('/arsenalFC/app/', {
     templateUrl: 'partials/homepage.html',
     controller: 'HomepageController'
   }).
-  when('/arsenalFC/app/#/players', {
+  when('/arsenalFC/app/players', {
     templateUrl: 'partials/playerList.html',
     controller: 'PlayerListController'
   }).
-  when('/arsenalFC/app/#/newPlayer', {
+  when('/arsenalFC/app/newPlayer', {
     templateUrl: 'partials/addNewPlayer.html',
     controller: 'NewPlayerController'
   }).
   otherwise({
-    redirectTo: '/arsenalFC/app/#/'
+    redirectTo: '/arsenalFC/app/'
   });
 
 }]);
