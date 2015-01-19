@@ -1,0 +1,26 @@
+<div id='home'>
+  <a href="#/home" ng-click="checkInfo()"><img class='logo' src='images/arsenal.jpg' alt="Responsive image"></a>
+</div>
+
+<div class="overlay" ng-hide="homepageOverlay"> 
+ 
+  <div class="club-info">  
+    <h4>About the club</h4>
+    <p>{{information[0].clubInfo}}<p>
+    <button ng-click="hideInfo()" class="btn btn-default">Close</button>
+    <button ng-click="editInfo(information[0]._id, information[0].clubInfo)" class="btn btn-default">Edit</button>
+  </div> 
+
+</div> 
+
+<div class="overlay" ng-hide="editHomepageOverlay"> 
+  <div class="club-info">  
+    <form ng-submit="editClubInfo()">
+      <label for="club-details">About the club</label>
+      <textarea class="form-control" rows="15" id="club-details" ng-model="newClubInfo"></textarea>
+      <button class="btn btn-default">Done</button>        
+    </form>
+  </div>
+</div>
+
+

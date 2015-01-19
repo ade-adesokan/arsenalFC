@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html ng-app="arsenalApp">
+  <head>
+    <link type= "text/css" rel="stylesheet" href= "libaries/bootstrap.css"/>
+    <link type= "text/css" rel="stylesheet" href= "css/main.css"/>
+    <title>Arsenal FC</title>
+  </head>
+  <body ng-controller="PlayerListController">
+
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="header">
+        <ul class="nav nav-pills">
+        <li role="presentation"><a href="/app/#/">Home</a></li>
+        <li role="presentation"><a href="/app/#/players">Players</a></li>
+        <li role="presentation"><a href="/app/#/newPlayer">Add Player</a></li>
+      </ul>
+
+      </div>
+      <div class="panel-body">
+
+        <div ng-view>
+        </div>
+
+      </div>
+      <div class="panel-footer">&copy Adewunmi Adesokan 2015</div>
+    </div>
+
+
+    
+    
+    
+
+    
+
+    
+    <script src="libaries/angular.js"></script>
+    <script src="../node_modules/angular-route/angular-route.js"></script>
+    <script src="../node_modules/angular-resource/angular-resource.js"></script>
+    <script src="libaries/angular-mocks.js"></script>
+    <script src="libaries/jquery-2.1.1.js"></script>
+    <script src="libaries/bootstrap.js"></script>
+    <script src="libaries/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+  </body>
+</html>

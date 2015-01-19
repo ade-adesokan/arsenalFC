@@ -1,0 +1,102 @@
+<ul class="list-group" ng-repeat="player in players">
+  <li class="list-group-item">
+    {{player.name}}
+    <button class="btn btn-default" ng-click="viewPlayerInfo(player.name)">View {{player.name}}'s Info</button>
+    <button class="btn btn-default" ng-click="edit(player.name, player.name, player.age, player.jerseyNumber, player.position, player.numberOfGoals, player.country, player.rating, player.imageURL)">Edit Info</button>
+  </li>
+  
+
+</ul>
+
+<div class="overlay" ng-hide="overlay">
+  
+    <div class="player-info">  
+      <div class="row">
+        <div class="col-md-8">
+          <div id="player-details">
+            <p>Name: {{player[0].name}}</p>
+            <p>Age: {{player[0].age}}</p>
+            <p>Position: {{player[0].position}}</p>
+            <p>Goals scored this season: {{player[0].numberOfGoals}}</p>
+            <p>Player rating: {{player[0].rating}}</p>
+            <p>Country of origin: {{player[0].country}}</p>
+            <p>Jersey number: {{player[0].jerseyNumber}}</p>
+            <button class="btn btn-default" ng-click="close()">Close</button>
+          </div>
+        </div>
+        <!-- div class="col-md-4">          
+          <img id='player-image' ng-src="{{player[0].imageURL}}"/>           
+        </div> -->
+        <div class="col-md-4">          
+          <img id='player-image' ng-src="https://arsenalfcapi.herokuapp.com/{{player[0].fileLink}}"/>           
+        </div>
+      </div>
+    </div>
+    
+</div> 
+
+<div class="overlay" ng-hide="editOverlay">
+  
+    <div class="edit-player-info"> 
+
+      <form class="form-horizontal" ng-submit="editPlayerInfo()">
+        <div class="form-group">
+          <label for="player-name" class="col-sm-2 control-label">Player Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="player-name" ng-model="newName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="age" class="col-sm-2 control-label">Player Age</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="age" ng-model="newAge">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="jersey-number" class="col-sm-2 control-label">Jersey Number</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="jersey-number" ng-model="newJerseyNumber">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="jersey-number" class="col-sm-2 control-label">Position</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="jersey-number" ng-model="newPosition">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="goals" class="col-sm-2 control-label">Number of Goals</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="goals" ng-model="newNumberOfGoals">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="country" class="col-sm-2 control-label">Country of Origin</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="country" ng-model="newCountry">
+          </div>
+        </div>        
+        <div class="form-group">
+          <label for="rating" class="col-sm-2 control-label">Rating</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="rating" ng-model="newRating">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imageURL" class="col-sm-2 control-label">Image URL</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="imageURL" ng-model="newImageURL">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Edit {{newName}}</button>            
+          </div>
+        </div>
+      </form>
+      
+    </div>
+    
+</div> 
+
+
