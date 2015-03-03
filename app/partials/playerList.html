@@ -2,7 +2,7 @@
   <li class="list-group-item">
     {{player.name}}
     <button class="btn btn-default" ng-click="viewPlayerInfo(player.name)">View {{player.name}}'s Info</button>
-    <button class="btn btn-default" ng-click="edit(player.name, player.name, player.age, player.jerseyNumber, player.position, player.numberOfGoals, player.country, player.rating, player.imageURL)">Edit Info</button>
+    <button class="btn btn-default" ng-click="edit(player.name, player.name, player.age, player.jerseyNumber, player.position, player.numberOfGoals, player.country, player.rating, player.imageURL, player.image)">Edit Info</button>
   </li>
   
 
@@ -28,7 +28,7 @@
           <img id='player-image' ng-src="{{player[0].imageURL}}"/>           
         </div> -->
         <div class="col-md-4">          
-          <img id='player-image' ng-src="https://arsenalfcapi.herokuapp.com/{{player[0].fileLink}}"/>           
+          <img id='player-image' ng-src="{{player[0].image}}"/>           
         </div>
       </div>
     </div>
@@ -94,6 +94,11 @@
           </div>
         </div>
       </form>
+      <div class="form-group">
+        <input type="file" id="newImage">
+        <button ng-click="changeImage()">Upload</button>
+        <p>{{feedback}}</p>
+      </div>
       
     </div>
     

@@ -61,18 +61,23 @@ PlayerListController = clubControllers.controller('PlayerListController', ['$sco
   
 
   $scope.viewPlayerInfo = function (playerName) {
-    
+
+      $scope.player = [];
     $http.get('https://arsenalfcapi.herokuapp.com/api/' + playerName).success( function (data) {
+      console.log($scope.player);
       $scope.player = data;
+      console.log($scope.player[0].image);
       console.log($scope.player);
       $scope.overlay = false;
+
     }).error(function () {
       console.log('Error occured, couldnt get player Info');
     });
 
+
   }
 
-  $scope.edit = function (name, newName, newAge, newJerseyNumber, newPosition, newNumberOfGoals, newCountry, newRating, newImageURL) {
+  $scope.edit = function (name, newName, newAge, newJerseyNumber, newPosition, newNumberOfGoals, newCountry, newRating, newImageURL, newImage) {
       $scope.PlayerName = name;
       $scope.newName = newName;
       $scope.newAge = newAge;
@@ -82,15 +87,30 @@ PlayerListController = clubControllers.controller('PlayerListController', ['$sco
       $scope.newCountry = newCountry;
       $scope.newRating = newRating;
       $scope.newImageURL = newImageURL;
+      $scope.newImage = newImage;
       $scope.editOverlay = false;      
     }
+
+  var newImage = $scope.newImage;
+
+  $scope.changeImage = function () {
+    var file = document.getElementById('newImage');
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      newImage = reader.result;
+      console.log(newImage);
+    }
+
+    reader.readAsDataURL(file.files[0]);
+    $scope.feedback = "Image Uploaded";
+  }
 
   $scope.editPlayerInfo = function () {
     
     $http({
       method  : 'PUT',
       url     : 'https://arsenalfcapi.herokuapp.com/api/' + $scope.PlayerName,
-      data    : $.param({name: $scope.newName, age: $scope.newAge, jerseyNumber: $scope.newJerseyNumber, position: $scope.newPosition, numberOfGoals: $scope.newNumberOfGoals, country: $scope.newCountry, rating: $scope.newRating, imageURL: $scope.newImageURL}),  
+      data    : $.param({name: $scope.newName, age: $scope.newAge, jerseyNumber: $scope.newJerseyNumber, position: $scope.newPosition, numberOfGoals: $scope.newNumberOfGoals, country: $scope.newCountry, rating: $scope.newRating, imageURL: $scope.newImageURL, image: newImage}),  
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
      }
     ).success(function () {
@@ -108,25 +128,34 @@ PlayerListController = clubControllers.controller('PlayerListController', ['$sco
   };
 }]);
 
-NewPlayerController = clubControllers.controller('NewPlayerController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+NewPlayerController = clubControllers.controller('NewPlayerController', ['$scope', '$http', '$location', '$timeout',  function ($scope, $http, $location, $timeout) {
 
-  $('#uploadForm').submit(function () {
-    
-    
-    $location.path('/newPlayer');
-  });
+  var image;
+
+  $scope.uploadImage = function () {
+    var file = document.getElementById('image');
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      image = reader.result;
+      console.log(image);
+    }
+
+    reader.readAsDataURL(file.files[0]);
+    $scope.feedback = "Image Uploaded";
+  };
  
 
-  $scope.addPlayer = function () {
+  $scope.addPlayer = function () { 
     if($scope.name){
       $http({
         method  : 'POST',
         url     : 'https://arsenalfcapi.herokuapp.com/api',
-        data    : $.param({name: $scope.name, age: $scope.age, jerseyNumber: $scope.jerseyNumber, position: $scope.position, numberOfGoals: $scope.numberOfGoals, country: $scope.country, rating: $scope.rating, imageURL: $scope.imageURL}),  
+        data    : $.param({name: $scope.name, age: $scope.age, jerseyNumber: $scope.jerseyNumber, position: $scope.position, numberOfGoals: $scope.numberOfGoals, country: $scope.country, rating: $scope.rating, imageURL: $scope.imageURL, image: image}),  
         headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
        }
       ).success(function () {
         console.log('New player added'); 
+        image = "";
         $location.path('/players');  
       })
       .error(function () {

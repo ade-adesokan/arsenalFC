@@ -7,7 +7,7 @@ arsenalAppServices.factory('club', ['$resource', function($resource){
 }]);
 
 arsenalAppServices.factory('playerList', ['$resource', function($resource){
-  return $resource('https://arsenalfcapi.herokuapp.com/api/', {}, {
+  return $resource('https://arsenalfcapi.herokuapp.com/api', {}, {
     updateTable: {method:'GET', isArray:true}
   });
 }]);
